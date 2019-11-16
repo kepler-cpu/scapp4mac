@@ -1,0 +1,71 @@
+# Setup Guide
+
+# Note: 
+# The objective of this documentation is to help users setting up the necessary computing environment
+# to run the “simple surveillance application”.  
+# While the intent is to provide step-by-step instructions, 
+# depending on your environment, the instructions may not be sufficient. 
+# If you run into any issues, feel free to post the questions to the community for assistance.
+
+# ====================================================================================================
+# Setup Steps:
+
+# Upgrade brew  
+# brew is Mac package manager
+# you may not need to do this step if the brew is already installed
+brew update
+
+# Install pip 
+# pip is a python package manager
+# you may not need to do this step if the pip is already installed
+brew install pip3
+
+# Install virtualenv
+# you may not need to do this if the virtualenv is already installed
+pip install virtualenv
+
+# Create a virtual environment (~container) to run the app
+# we will use surcam4mac but you can use whatever name you like
+virtualenv surcam4mac 
+
+# "cd into the directory created 
+cd surcam4mac
+
+# Activate the virtual environment	
+source bin/activate"
+
+# Install Python3 inside of the virtual environment	
+pip install python3
+
+# Install tensorflow
+pip install tensorflow
+
+# install tensofflow’s dependencies	
+pip install Cython
+pip install pillow
+pip install lxml
+pip install jupyter
+pip install matplotlib"
+
+# install git
+brew install git
+
+# Clone Tensorflow object detection models
+git clone https://github.com/tensorflow/models.git
+
+# Compile Protobuf	
+# Run the following from tensorflow/models/research/ directory:
+cd tensorflow/models/research/ directory
+protoc object_detection/protos/*.proto --python_out=."
+
+# Add Libraries to PYTHONPATH	
+# use a text editor tp add the following to ~/.bash_rc or ~/.bash_profile file
+
+export PYTHONPATH=$PYTHONPATH:/PATH-TO/models/research:/PATH-TO/models/research/slim"
+
+# Clone sscapp from github	
+git clone https://github.com/kepler-cpu/scapp4mac.git
+
+#Run the app	
+python sscapp.py
+
